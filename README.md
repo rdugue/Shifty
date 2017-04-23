@@ -10,6 +10,6 @@ Here is a non-comprehensive list of Javascript-related technologies you might wa
 -Karma
 -NPM
 ## How To Run
-To run the application, simply type `npm start'
+To run the application, simply type `npm start`
 ## Acknowledgements 
 The project structure for this app borrows **heavily** from [AngularClass's Retain app.](https://github.com/AngularClass/retain-app)
