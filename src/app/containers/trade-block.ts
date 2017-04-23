@@ -87,14 +87,11 @@ export class TradeBlock implements OnDestroy {
     ];
 
     constructor(
-        //private shiftService: ShiftService,
         private tradeService: TradeService,
         private store: Store
     ) {
         this.tradeService.getShifts()
         .subscribe();
-        //this.shiftService.getShifts()
-        //.subscribe();
 
         this.shiftSub = this.store.changes.pluck('tradeable_shifts')
         .subscribe((shifts: any) => this.tradeable_shifts = shifts);
@@ -106,8 +103,9 @@ export class TradeBlock implements OnDestroy {
 
     onShiftPickUp(shift) {
         const user = this.store.getState().user;
+        console.log(JSON.stringify(user));
         let new_shift = shift;
-        new_shift.info.name = user.info.first_name;
+        new_shift.info.employee = user.info.first_name;
         this.tradeService.removeShift(new_shift)
         .subscribe();
         console.log(JSON.stringify(this.tradeable_shifts));

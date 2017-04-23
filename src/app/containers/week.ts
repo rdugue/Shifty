@@ -104,9 +104,6 @@ export class Week implements OnDestroy {
 
         this.shiftSub = this.store.changes.pluck('shifts')
         .subscribe((shifts: any) => this.shifts = shifts);
-        //console.log('Week instance made');
-
-        
     }
 
     ngOnDestroy() {
