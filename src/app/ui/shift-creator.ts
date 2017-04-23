@@ -28,22 +28,23 @@ import {
   template: `
     <div class="shift-creator shadow-2">
         <form class="row" (ngSubmit)="onCreateShift()">
+            <label for="start" *ngIf="fullForm" class="col-xs-2">Start:</label>
             <input 
                 [(ngModel)]="newShift.info.start_time" 
                 name="startTime" 
-                class="col-xs-5"
                 (focus)="toggleForm(true)"
                 *ngIf="fullForm"
                 type="time"
+                id="start"
             >
-            <p class="col-xs-1" *ngIf="fullForm"> To </p>
+            <label for="end" *ngIf="fullForm" class="col-xs-2">End:</label>
             <input 
                 [(ngModel)]="newShift.info.end_time"
                 name="endTime" 
-                class="col-xs-5"
                 (focus)="toggleForm(true)"
                 *ngIf="fullForm"
                 type="time"
+                id="end"
             >
             <input 
               type="text"
@@ -51,15 +52,15 @@ import {
               [(ngModel)]="newShift.info.employee"
               name="employeeName"
               placeholder="Employee name..."
-              class="col-xs-10"
+              class="col-xs-12"
             >
+            <label for="days" class="col-xs-2">Day:</label>
             <select 
               type="text"
               (focus)="toggleForm(true)"
               [(ngModel)]="newShift.info.day"
               name="dayName"
-              placeholder="Day..."
-              class="col-xs-10"
+              id="days"
               *ngIf="createForm"
             >
               <option 

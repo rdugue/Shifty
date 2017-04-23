@@ -19,11 +19,11 @@ export class TradeService {
 
     getShifts() {
         return this.api.get(this.path)
-        .do((resp: any) => this.storeHelper.update('tradeable_shifts', resp));
+        .do((res: any) => this.storeHelper.update('tradeable_shifts', res.data));
     }
 
     removeShift(shift) {
         return this.api.delete(`${this.path}/${shift.id}/${shift.createdAt}`)
-        .do((res: any) => this.storeHelper.findAndDelete('tradeable_shifts', res.id));
+        .do((res: any) => this.storeHelper.findAndDelete('tradeable_shifts', res.data.id));
     }
 }

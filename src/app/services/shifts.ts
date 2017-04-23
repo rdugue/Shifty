@@ -27,11 +27,11 @@ export class ShiftService {
 
     getShifts() {
         return this.api.get(this.path)
-        .do((resp: any) => this.storeHelper.update('shifts', resp));
+        .do((res: any) => this.storeHelper.update('shifts', res.data));
     }
 
     removeShift(shift) {
         return this.api.delete(`${this.path}/${shift.id}/${shift.createdAt}`)
-        .do((res: any) => this.storeHelper.findAndDelete('shifts', res.id));
+        .do((res: any) => this.storeHelper.findAndDelete('shifts', res.data.id));
     }
 }
