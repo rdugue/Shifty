@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http'
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic'
 import { App, routes, providers } from './app'
-import { Main, Week, TradeBlock, Help, Auth } from './app/containers'
+import { Main, Week, Day, TradeBlock, Help, Auth } from './app/containers'
 import { AppBar, ShiftCard, ShiftCreator  } from './app/ui'
 
 
@@ -15,6 +15,7 @@ import { AppBar, ShiftCard, ShiftCreator  } from './app/ui'
 		AppBar,
 		ShiftCard,
 		Week,
+		Day,
 		ShiftCreator,
 		TradeBlock,
 		Help,
