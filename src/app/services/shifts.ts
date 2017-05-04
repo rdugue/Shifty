@@ -10,10 +10,7 @@ export class ShiftService {
     constructor(
         private api: ApiService,
         private storeHelper: StoreHelper
-    ) {
-        //const token = window.localStorage.getItem(this.authService.JWT_KEY);
-        //this.api.setHeaders({Authorization: `JWT ${token}`});
-    }
+    ) {}
 
     createShift(shift) {
         return this.api.post(this.path, shift)
