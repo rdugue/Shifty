@@ -4,26 +4,24 @@ import 'rxjs/Rx';
 
 export interface Shift {
     id: string | number
+    companyt: string
+    updatedAt?: string
+    start_time: string
+    end_time: string 
+    employee: string
+    day: string
     createdAt: string
-    info: {
-      updatedAt?: string
-      start_time: string
-      end_time: string 
-      employee: string
-      day: string
-      isTradeable?: boolean
-    }
+    isTradeable?: boolean
 }
 
 export interface User {
   userId?: string
-  info?: {
-    password: string
-    first_name: string
-    last_name: string
-    email: string
-    position: string
-  }
+  company?: String
+  password?: string
+  first_name?: string
+  last_name?: string
+  email?: string
+  position?: string
 }
 
 export interface State {
@@ -44,7 +42,7 @@ const _store = new BehaviorSubject<State>(defaultState);
 export class Store {
   private _store = _store;
   changes = this._store.asObservable().distinctUntilChanged();
-  //.do(changes => console.log('new state', changes))
+  //.do(changes => console.log('new state', changes));
 
   setState(state: State) {
     this._store.next(state);

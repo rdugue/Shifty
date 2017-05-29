@@ -102,12 +102,10 @@ export class ShiftCard {
     @Input() shift = {
         id: 0,
         createdAt: '',
-        info: {
-          start_time: '',
-          end_time: '',
-          employee: '',
-          day: ''
-        }
+        start_time: '',
+        end_time: '',
+        employee: '',
+        day: ''
     };
     @Input() tradeable: boolean = false;
 
@@ -123,8 +121,8 @@ export class ShiftCard {
 
     printTime(): string {
         let times  = [
-            convert(this.shift.info.start_time, 'hh:mm A'), 
-            convert(this.shift.info.end_time, 'hh:mm A')
+            convert(this.shift.start_time, 'hh:mm A'), 
+            convert(this.shift.end_time, 'hh:mm A')
         ];
             
         times.forEach((time: string, i) => {

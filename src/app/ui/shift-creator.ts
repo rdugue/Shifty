@@ -30,7 +30,7 @@ import {
         <form class="row" (ngSubmit)="onCreateShift()">
             <label for="start" *ngIf="fullForm" class="col-xs-2">Start:</label>
             <input 
-                [(ngModel)]="newShift.info.start_time" 
+                [(ngModel)]="newShift.start_time" 
                 name="startTime" 
                 (focus)="toggleForm(true)"
                 *ngIf="fullForm"
@@ -39,7 +39,7 @@ import {
             >
             <label for="end" *ngIf="fullForm" class="col-xs-2">End:</label>
             <input 
-                [(ngModel)]="newShift.info.end_time"
+                [(ngModel)]="newShift.end_time"
                 name="endTime" 
                 (focus)="toggleForm(true)"
                 *ngIf="fullForm"
@@ -49,7 +49,7 @@ import {
             <input 
               type="text"
               (focus)="toggleForm(true)"
-              [(ngModel)]="newShift.info.employee"
+              [(ngModel)]="newShift.employee"
               name="employeeName"
               placeholder="Employee name..."
               class="col-xs-12"
@@ -58,7 +58,7 @@ import {
             <select 
               type="text"
               (focus)="toggleForm(true)"
-              [(ngModel)]="newShift.info.day"
+              [(ngModel)]="newShift.day"
               name="dayName"
               id="days"
               *ngIf="createForm"
@@ -87,22 +87,18 @@ export class ShiftCreator {
     @Input() newShift = {
         id: 0,
         createdAt: '',
-        info: {
           start_time: '',
           end_time: '',
           employee: '',
           day: ''
-        }
     };
     @Input() update = {
         id: 0,
         createdAt: '',
-        info: {
-          start_time: '',
-          end_time: '',
-          employee: '',
-          day: ''
-        }
+        start_time: '',
+        end_time: '',
+        employee: '',
+        day: ''
     };
     @Input() button: string = "Add";
 
@@ -118,10 +114,10 @@ export class ShiftCreator {
 
 
   onCreateShift() {
-    const { id, createdAt, info: { start_time, end_time, employee, day } } = this.newShift;
+    const { id, createdAt, start_time, end_time, employee, day } = this.newShift;
 
     if (start_time && end_time && employee && day) {
-      this.createShift.next({ id, createdAt, info: { start_time, end_time, employee, day } });
+      this.createShift.next({ id, createdAt, start_time, end_time, employee, day });
     }
 
     this.reset(this.update);
@@ -135,12 +131,10 @@ export class ShiftCreator {
       this.newShift = {
         id: 0,
         createdAt: '',
-        info: {
-          start_time: '',
-          end_time: '',
-          employee: '',
-          day: ''
-        }
+        start_time: '',
+        end_time: '',
+        employee: '',
+        day: ''
       };
     }
   }

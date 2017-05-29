@@ -56,7 +56,7 @@ import { Router } from '@angular/router';
             placeholder="first name"
             required
             *ngIf="isRegistration"
-            [(ngModel)]="user.info.first_name"
+            [(ngModel)]="user.first_name"
             #first="ngModel"
           >
           <input
@@ -66,18 +66,28 @@ import { Router } from '@angular/router';
             placeholder="last name"
             required
             *ngIf="isRegistration"
-            [(ngModel)]="user.info.last_name"
+            [(ngModel)]="user.last_name"
             #last="ngModel"
           >
           <input
-            class="col-xs-8"
+            class="col-xs-4"
             type="email"
             name="email"
             placeholder="email"
             required
             *ngIf="isRegistration"
-            [(ngModel)]="user.info.email"
+            [(ngModel)]="user.email"
             #email="ngModel"
+          >
+          <input
+            class="col-xs-4"
+            type="text"
+            name="company"
+            placeholder="company"
+            required
+            *ngIf="isRegistration"
+            [(ngModel)]="user.company"
+            #company="ngModel"
           >
           <input
             class="col-xs-8"
@@ -94,7 +104,7 @@ import { Router } from '@angular/router';
             name="password"
             placeholder="password"
             required
-            [(ngModel)]="user.info.password"
+            [(ngModel)]="user.password"
             #password="ngModel"
           >
           <div class="error" [hidden]="password.valid || password.pristine">password is required</div>
@@ -120,13 +130,12 @@ import { Router } from '@angular/router';
 export class Auth {
   user = {
     userId: '',
-    info: {
-        password: '',
-        first_name: '',
-        last_name: '',
-        email: '',
-        position: 'Admin'
-    }
+    company: '',
+    password: '',
+    first_name: '',
+    last_name: '',
+    email: '',
+    position: 'Admin'
   };
 
   mode: string = 'login';

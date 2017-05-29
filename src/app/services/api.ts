@@ -16,17 +16,17 @@ export class ApiService {
 
     }
 
-    private getJson(resp: Response) {
+    private getJson(res: Response) {
         //console.log('Server response:', JSON.stringify(resp.json()));
-        return resp.json();
+        return res.json();
     }
 
-    private checkForError(resp: Response): Response {
-        if (resp.status >= 200 && resp.status < 300) {
-            return resp;
+    private checkForError(res: Response): Response {
+        if (res.status >= 200 && res.status < 300) {
+            return res;
         } else {
-            const error = new Error(resp.statusText);
-            error['response'] = resp;
+            const error = new Error(res.statusText);
+            error['response'] = res;
             console.error(error);
             throw error;
         }

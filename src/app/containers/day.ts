@@ -1,7 +1,6 @@
 import { 
     Component, 
     Input, 
-    OnDestroy,
     AfterViewInit 
 } from '@angular/core';
 import { ShiftService, TradeService } from '../services';
@@ -43,7 +42,7 @@ import { Subscription } from 'rxjs/Rx';
         </div>
     `
 })
-export class Day implements OnDestroy, AfterViewInit {
+export class Day implements AfterViewInit {
     @Input() day_name: string = '';
     @Input() tradeblock: boolean;
     shifts = [];
@@ -56,7 +55,6 @@ export class Day implements OnDestroy, AfterViewInit {
     ) {}
 
     ngAfterViewInit() {
-        console.log('Is tradeable:', this.tradeblock);
         if (this.tradeblock) {
             this.tradeService.getShifts()
             .subscribe();
@@ -68,10 +66,6 @@ export class Day implements OnDestroy, AfterViewInit {
             this.shiftSub = this.store.changes.pluck('shifts')
             .subscribe((shifts: any) => this.shifts = shifts);
         }
-    }
-
-    ngOnDestroy() {
-        this.shiftSub.unsubscribe();
     }
 
     onShiftRemoved(shift) {
@@ -97,9 +91,8 @@ export class Day implements OnDestroy, AfterViewInit {
     onShiftPickUp(shift) {
         let user = this.store.getState().user;
         console.log(JSON.stringify(this.store.getState().user));
-        let new_shift = shift;
-        new_shift.info.employee = user.info.first_name;
-        this.tradeService.removeShift(new_shift)
+        shift.employee = user.first_name;
+        this.tradeService.removeShift(shift)
         .subscribe();
         console.log(JSON.stringify(this.shifts));
     }
