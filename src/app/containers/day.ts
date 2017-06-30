@@ -51,17 +51,20 @@ export class Day implements AfterViewInit {
     constructor(
         private shiftService: ShiftService,
         private tradeService: TradeService,
-        private store: Store
-    ) {}
+        private store: Store,
+        private user: any
+    ) {
+        user = store.getState().user;
+    }
 
     ngAfterViewInit() {
         if (this.tradeblock) {
-            this.tradeService.getShifts()
+            this.tradeService.getShifts(this.user.company)
             .subscribe();
             this.shiftSub = this.store.changes.pluck('tradeable_shifts')
             .subscribe((shifts: any) => this.shifts = shifts);
         } else {
-            this.shiftService.getShifts()
+            this.shiftService.getShifts(this.user.company)
             .subscribe();
             this.shiftSub = this.store.changes.pluck('shifts')
             .subscribe((shifts: any) => this.shifts = shifts);
@@ -89,10 +92,10 @@ export class Day implements AfterViewInit {
     }
 
     onShiftPickUp(shift) {
-        let user = this.store.getState().user;
-        console.log(JSON.stringify(this.store.getState().user));
-        shift.employee = user.first_name;
-        this.tradeService.removeShift(shift)
+        console.log(JSON.stringify(this.user));
+        shift.employee = this.user.first_name;
+        shift.tradeable = false;
+        this.tradeService.swapShift(shift)
         .subscribe();
         console.log(JSON.stringify(this.shifts));
     }

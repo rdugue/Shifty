@@ -10,8 +10,9 @@ export interface Shift {
     end_time: string 
     employee: string
     day: string
+    role: string
     createdAt: string
-    isTradeable?: boolean
+    tradeable: boolean
 }
 
 export interface User {

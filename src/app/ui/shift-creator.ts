@@ -54,6 +54,14 @@ import {
               placeholder="Employee name..."
               class="col-xs-12"
             >
+            <input 
+              type="text"
+              (focus)="toggleForm(true)"
+              [(ngModel)]="newShift.role"
+              name="role"
+              placeholder="Role..."
+              class="col-xs-12"
+            >
             <label for="days" class="col-xs-2">Day:</label>
             <select 
               type="text"
@@ -90,7 +98,8 @@ export class ShiftCreator {
           start_time: '',
           end_time: '',
           employee: '',
-          day: ''
+          day: '',
+          role: ''
     };
     @Input() update = {
         id: 0,
@@ -98,7 +107,8 @@ export class ShiftCreator {
         start_time: '',
         end_time: '',
         employee: '',
-        day: ''
+        day: '',
+        role: ''
     };
     @Input() button: string = "Add";
 
@@ -114,10 +124,10 @@ export class ShiftCreator {
 
 
   onCreateShift() {
-    const { id, createdAt, start_time, end_time, employee, day } = this.newShift;
+    const { id, createdAt, start_time, end_time, employee, day, role } = this.newShift;
 
-    if (start_time && end_time && employee && day) {
-      this.createShift.next({ id, createdAt, start_time, end_time, employee, day });
+    if (start_time && end_time && employee && day && role) {
+      this.createShift.next({ id, createdAt, start_time, end_time, employee, day, role });
     }
 
     this.reset(this.update);
@@ -134,7 +144,8 @@ export class ShiftCreator {
         start_time: '',
         end_time: '',
         employee: '',
-        day: ''
+        day: '',
+        role: ''
       };
     }
   }
