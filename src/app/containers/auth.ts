@@ -158,9 +158,9 @@ export class Auth {
 
   getPath() {
     if (this.mode === 'login') {
-      return this.mode;
+      return `/${this.mode}`;
     } else {
-      return `${this.mode}/company`;
+      return `/${this.mode}/company`;
     }
   }
 
