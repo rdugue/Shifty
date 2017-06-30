@@ -47,14 +47,14 @@ export class Day implements AfterViewInit {
     @Input() tradeblock: boolean;
     shifts = [];
     shiftSub: Subscription;
+    user;
 
     constructor(
         private shiftService: ShiftService,
         private tradeService: TradeService,
-        private store: Store,
-        private user: any
+        private store: Store
     ) {
-        user = store.getState().user;
+        this.user = store.getState().user;
     }
 
     ngAfterViewInit() {
