@@ -50,7 +50,7 @@ import { Router } from '@angular/router';
             {{ mode }}
           </h3>
           <input
-            class="col-xs-4"
+            class="col-xs-8"
             type="text"
             name="first_name"
             placeholder="first name"
@@ -60,7 +60,7 @@ import { Router } from '@angular/router';
             #first="ngModel"
           >
           <input
-            class="col-xs-4"
+            class="col-xs-8"
             type="text"
             name="last_name"
             placeholder="last name"
@@ -70,7 +70,7 @@ import { Router } from '@angular/router';
             #last="ngModel"
           >
           <input
-            class="col-xs-4"
+            class="col-xs-8"
             type="email"
             name="email"
             placeholder="email"
@@ -80,7 +80,7 @@ import { Router } from '@angular/router';
             #email="ngModel"
           >
           <input
-            class="col-xs-4"
+            class="col-xs-8"
             type="text"
             name="company"
             placeholder="company"
@@ -156,8 +156,16 @@ export class Auth {
     }
   }
 
+  getPath() {
+    if (this.mode === 'login') {
+      return this.mode;
+    } else {
+      return `${this.mode}/company`;
+    }
+  }
+
   authenticate() {
-    this.auth.authenticate(this.mode, this.user)
+    this.auth.authenticate(this.getPath(), this.user)
     .subscribe(() => this.router.navigate(['']))
   }
 }

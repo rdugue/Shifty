@@ -6,7 +6,7 @@ import 'rxjs/Rx';
 
 @Injectable()
 export class ShiftService {
-    path: string = '/api/week';
+    path: string = '/api/shifts';
     constructor(
         private api: ApiService,
         private storeHelper: StoreHelper
@@ -22,13 +22,13 @@ export class ShiftService {
         .do(savedShift => this.storeHelper.findAndUpdate('shifts', savedShift));
     }
 
-    getShifts() {
-        return this.api.get(this.path)
+    getShifts(company) {
+        return this.api.get(`${this.path}?company=${company}`)
         .do((res: any) => this.storeHelper.update('shifts', res.data));
     }
 
     removeShift(shift) {
-        return this.api.delete(`${this.path}/${shift.id}/${shift.createdAt}`)
+        return this.api.delete(`${this.path}?id=${shift.id}&role=${shift.role}`)
         .do((res: any) => this.storeHelper.findAndDelete('shifts', res.data.id));
     }
 }

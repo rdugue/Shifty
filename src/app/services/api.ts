@@ -10,7 +10,7 @@ export class ApiService {
         "Content-Type": "application/json"
     })
 
-    api_url: string = 'http://localhost:3500';
+    api_url: string = 'https://otx2z4fvgl.execute-api.us-east-1.amazonaws.com/Prod';
 
     constructor(private http: Http) {
 

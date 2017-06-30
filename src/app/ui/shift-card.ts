@@ -83,8 +83,11 @@ import * as moment from 'moment';
             {{ printTime() }}
         </div>
         <div class="col-xs-12 value" *ngIf="!editMode">
-            {{ shift.info.employee }}
+            {{ shift.employee }}
         </div>
+        <div class="col-xs-12 value" *ngIf="!editMode">
+            {{ shift.role }}
+        </div>v
         <shift-creator 
             [newShift]="shift"
             [update]="shift"
@@ -105,7 +108,8 @@ export class ShiftCard {
         start_time: '',
         end_time: '',
         employee: '',
-        day: ''
+        day: '',
+        role: ''
     };
     @Input() tradeable: boolean = false;
 
