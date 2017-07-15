@@ -6,24 +6,19 @@ import 'rxjs/Rx';
 
 @Injectable()
 export class TradeService {
-    path: string = '/api/trades';
+    path: string = '/api';
     constructor(
         private api: ApiService,
         private storeHelper: StoreHelper
     ) {}
 
-    createShift(shift) {
-        return this.api.post(this.path, shift)
-        .do(savedShift => this.storeHelper.add('tradeable_shifts', savedShift));
-    }
-
     getShifts(company) {
-        return this.api.get(`${this.path}?company=${company}`)
+        return this.api.get(`${this.path}/trades/all/${company}`)
         .do((res: any) => this.storeHelper.update('tradeable_shifts', res.data));
     }
 
     swapShift(shift) {
-        return this.api.post(this.path, shift)
+        return this.api.put(`${this.path}/shifts/${shift.id}`, shift)
         .do(savedShift => this.storeHelper.findAndDelete('tradeable_shifts', savedShift.id));
     }
 }

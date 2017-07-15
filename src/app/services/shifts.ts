@@ -18,17 +18,17 @@ export class ShiftService {
     }
 
     updateShift(shift) {
-        return this.api.post(this.path, shift)
+        return this.api.put(`${this.path}/${shift.id}`, shift)
         .do(savedShift => this.storeHelper.findAndUpdate('shifts', savedShift));
     }
 
     getShifts(company) {
-        return this.api.get(`${this.path}?company=${company}`)
+        return this.api.get(`${this.path}/all/${company}`)
         .do((res: any) => this.storeHelper.update('shifts', res.data));
     }
 
     removeShift(shift) {
-        return this.api.delete(`${this.path}?id=${shift.id}&role=${shift.role}`)
+        return this.api.delete(`${this.path}/${shift.id}`)
         .do((res: any) => this.storeHelper.findAndDelete('shifts', res.data.id));
     }
 }
