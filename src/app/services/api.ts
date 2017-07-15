@@ -10,7 +10,7 @@ export class ApiService {
         "Content-Type": "application/json"
     })
 
-    api_url: string = 'https://otx2z4fvgl.execute-api.us-east-1.amazonaws.com/Prod';
+    api_url: string = 'https://u3kxahcoj4.execute-api.us-east-1.amazonaws.com/dev';
 
     constructor(private http: Http) {
 
@@ -33,7 +33,10 @@ export class ApiService {
     }
 
     get(path: string): Observable<any> {
-        return this.http.get(`${this.api_url}${path}`, {headers: this.headers, withCredentials: true})
+        return this.http.get(
+            `${this.api_url}${path}`, 
+            {headers: this.headers}
+        )
         .map(this.checkForError)
         .catch(err => Observable.throw(err))
         .map(this.getJson)
@@ -43,7 +46,18 @@ export class ApiService {
         return this.http.post(
             `${this.api_url}${path}`,
             JSON.stringify(body),
-            {headers: this.headers, withCredentials: true}
+            {headers: this.headers}
+        )
+        .map(this.checkForError)
+        .catch(err => Observable.throw(err))
+        .map(this.getJson)
+    }
+
+    put(path: string, body): Observable<any> {
+        return this.http.put(
+            `${this.api_url}${path}`,
+            JSON.stringify(body),
+            {headers: this.headers}
         )
         .map(this.checkForError)
         .catch(err => Observable.throw(err))
@@ -51,7 +65,10 @@ export class ApiService {
     }
 
     delete(path: string): Observable<any> {
-        return this.http.delete(`${this.api_url}${path}`, {headers: this.headers, withCredentials: true})
+        return this.http.delete(
+            `${this.api_url}${path}`, 
+            {headers: this.headers}
+        )
         .map(this.checkForError)
         .catch(err => Observable.throw(err))
         .map(this.getJson)

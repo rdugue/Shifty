@@ -87,7 +87,8 @@ export class Day implements AfterViewInit {
     }
 
     onShiftTraded(shift) {
-        this.tradeService.createShift(shift)
+        shift.tradeable = true;
+        this.shiftService.updateShift(shift)
         .subscribe();
     }
 

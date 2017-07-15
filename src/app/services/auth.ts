@@ -9,7 +9,7 @@ import 'rxjs/Rx';
 @Injectable()
 export class AuthService implements CanActivate {
     JWT_KEY: string = 'shifty_token';
-    JWT: string = '';
+    JWT: string = 'testing';
 
   constructor(
      private storeHelper: StoreHelper,
