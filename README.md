@@ -4,7 +4,7 @@ Shifty is an application for scheduling and managing hourly shifts of employees 
 Here is a non-comprehensive list of Javascript-related technologies you might want to be familiar with if you plan to emulate this project, or contribute to it:
 - Typescript 
 - Rxjs 
-- Angular 2
+- Angular
 - Webpack
 - QUnit 
 - Karma
