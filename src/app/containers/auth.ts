@@ -85,7 +85,6 @@ import { Router } from '@angular/router';
             name="company"
             placeholder="company"
             required
-            *ngIf="isRegistration"
             [(ngModel)]="user.company"
             #company="ngModel"
           >
@@ -135,7 +134,7 @@ export class Auth {
     first_name: '',
     last_name: '',
     email: '',
-    position: 'Admin'
+    position: ''
   };
 
   mode: string = 'login';
@@ -157,11 +156,7 @@ export class Auth {
   }
 
   getPath() {
-    if (this.mode === 'login') {
-      return `/${this.mode}`;
-    } else {
-      return `/${this.mode}/company`;
-    }
+    return `/auth/${this.mode}`;
   }
 
   authenticate() {

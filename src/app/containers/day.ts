@@ -3,10 +3,14 @@ import {
     Input, 
     AfterViewInit 
 } from '@angular/core';
-import { ShiftService, TradeService } from '../services';
+import { 
+    ShiftService, 
+    TradeService, 
+    UserService
+} from '../services';
 import { Store } from '../store';
 import 'rxjs/Rx';
-import { Subscription } from 'rxjs/Rx'; 
+import { Subscription } from 'rxjs/Rx';
 
 
 @Component({
@@ -52,12 +56,17 @@ export class Day implements AfterViewInit {
     constructor(
         private shiftService: ShiftService,
         private tradeService: TradeService,
-        private store: Store
-    ) {
-        this.user = store.getState().user;
-    }
+        private store: Store,
+        private userService: UserService
+    ) {}
 
     ngAfterViewInit() {
+        this.store.changes.pluck('user')
+        .subscribe((user: any) => this.user = user);
+        this.userService.getUser(this.user.userId)
+        .subscribe();
+        this.store.changes.pluck('user')
+        .subscribe((user: any) => this.user = user);
         if (this.tradeblock) {
             this.tradeService.getShifts(this.user.company)
             .subscribe();

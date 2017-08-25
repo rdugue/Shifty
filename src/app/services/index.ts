@@ -3,4 +3,4 @@ export { ShiftService } from './shifts';
 export { TradeService } from './trades';
 export { StoreHelper } from './store-helper';
 export { AuthService } from './auth';
-export { UsersService } from './users';
+export { UserService } from './user';

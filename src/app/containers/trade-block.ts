@@ -1,6 +1,6 @@
 import { Component, OnDestroy } from '@angular/core';
 import { Week } from './week';
-import { TradeService, UsersService  } from '../services';
+import { TradeService } from '../services';
 import { Store } from '../store';
 import 'rxjs/Rx';
 import { Subscription } from 'rxjs/Rx'; 
