@@ -10,7 +10,7 @@ export class ApiService {
         "Content-Type": "application/json"
     })
 
-    api_url: string = 'https://u3kxahcoj4.execute-api.us-east-1.amazonaws.com/dev';
+    api_url: string = 'https://bqwpm15znk.execute-api.us-east-1.amazonaws.com/dev';
 
     constructor(private http: Http) {
 

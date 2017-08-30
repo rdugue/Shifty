@@ -63,7 +63,7 @@ export class Day implements AfterViewInit {
     ngAfterViewInit() {
         this.store.changes.pluck('user')
         .subscribe((user: any) => this.user = user);
-        this.userService.getUser(this.user.userId)
+        this.userService.getUser(this.user.userId,  this.user.company)
         .subscribe();
         this.store.changes.pluck('user')
         .subscribe((user: any) => this.user = user);

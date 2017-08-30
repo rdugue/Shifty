@@ -12,8 +12,8 @@ export class UserService {
         private storeHelper: StoreHelper
     ) {}
 
-    getUser(id) {
-        return this.api.get(`${this.path}/${id}`)
+    getUser(id, company) {
+        return this.api.get(`${this.path}/${id}/${company}`)
         .do((res: any) => this.storeHelper.update('user', res.data));
     }
 }
